@@ -57,18 +57,26 @@ function createCanvas() {
     insideCanvas.style.height = (canvasTotal * pixelSize) + "px";
 
     for (let i = 0, len = canvasTotal * canvasTotal; i < len; i++) {
-        canvas = document.createElement("div");
-        canvas.className = "canvasCells";
-        canvas.style.height = pixelSize + "px";
-        canvas.style.width = pixelSize + "px";
-        canvas.addEventListener("click",function() {
-        this.style.backgroundColor = cellColor});
-        canvas.style.backgroundColor = 'white';
-        insideCanvas.appendChild(canvas);
-
-    }
-    paintContainer.appendChild(insideCanvas);
-  }
+       canvas = document.createElement("div");
+       canvas.className = "canvasCells";
+       canvas.style.height = pixelSize + "px";
+       canvas.style.width = pixelSize + "px";
+       canvas.addEventListener("click",function() {
+       this.style.backgroundColor = cellColor});
+       canvas.style.backgroundColor = 'white';
+       insideCanvas.appendChild(canvas);
+       canvas.addEventListener('mouseover', function(){
+       if (event.buttons === 1) {
+           if (event.shiftKey) {
+             this.style.backgroundColor = 'white';
+           } else {
+             this.style.backgroundColor = cellColor;
+           }
+         }
+       });
+      }
+       paintContainer.appendChild(insideCanvas);
+ }
 
   createCanvas();
 
